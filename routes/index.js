@@ -1,18 +1,9 @@
-var express = require('express')
-var router = express.Router()
+const express = require('express')
+const router = express.Router()
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.json([
-    {
-      id: 1,
-      username: 'test1'
-    },
-    {
-      id: 2,
-      username: 'test2'
-    }
-  ])
+  res.send({ ping: 'ok' })
 })
 
 module.exports = router
