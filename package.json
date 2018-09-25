@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "start": "concurrently --kill-others-on-fail \"yarn start:server\" \"yarn start:client\"",
+    "start:server": "PORT=8080 nodemon ./bin/www",
     "start:client": "cd client && yarn start",
-    "start:server": "PORT=8080 nodemon ./bin/www"
+    "postinstall": "cd client && yarn"
   },
   "dependencies": {
     "concurrently": "^4.0.1",
