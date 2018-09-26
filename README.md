@@ -27,12 +27,6 @@ The client will open on [localhost:3000](http://localhost:3000/).
 
 TBD
 
-## Boilerplate Information
-
-Front-end: [Create React App](https://github.com/facebook/create-react-app)
-
-Back-end: [Express Generator](https://expressjs.com/en/starter/generator.html)
-
 ---
 
 ## Code of Conduct

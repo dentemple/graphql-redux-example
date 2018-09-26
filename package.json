@@ -4,24 +4,48 @@
   "private": true,
   "scripts": {
     "start": "concurrently --kill-others-on-fail \"yarn start:server\" \"yarn start:client\"",
-    "start:server": "PORT=8080 nodemon ./bin/www",
-    "start:client": "cd client && yarn start",
-    "postinstall": "cd client && yarn"
+    "start:server": "nodemon server",
+    "start:client": "webpack-dev-server --hot --open"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.0.0",
     "concurrently": "^4.0.1",
     "cookie-parser": "~1.4.3",
-    "debug": "~2.6.9",
+    "debug": "^4.0.1",
     "express": "~4.16.0",
-    "http-errors": "~1.6.2",
-    "jade": "~1.11.0",
-    "morgan": "~1.9.0"
+    "express-graphql": "^0.6.12",
+    "graphql": "^14.0.2",
+    "morgan": "^1.9.1",
+    "prop-types": "^15.6.2",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "react-hot-loader": "^4.3.11",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.3.1",
+    "redux": "^4.0.0",
+    "redux-thunk": "^2.3.0",
+    "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.1.0",
+    "@babel/core": "^7.1.0",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+    "@babel/plugin-transform-react-constant-elements": "^7.0.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.2",
+    "css-loader": "^1.0.0",
+    "file-loader": "^2.0.0",
     "husky": "^1.0.0-rc.15",
     "lint-staged": "^7.3.0",
     "nodemon": "^1.18.4",
-    "prettier": "^1.14.3"
+    "prettier": "^1.14.3",
+    "redux-devtools-extension": "^2.13.5",
+    "style-loader": "^0.23.0",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.1",
+    "webpack-dev-server": "^3.1.9"
   },
   "husky": {
     "hooks": {
