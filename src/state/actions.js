@@ -1,8 +1,23 @@
 import { ACTIONS } from './types'
 
-export function testDispatch() {
-  console.log('Action:', ACTIONS.TEST_DISPATCH)
-  return {
-    type: ACTIONS.TEST_DISPATCH
-  }
+export const testDispatch = () => ({
+  type: ACTIONS.TEST_DISPATCH
+})
+
+export const requestUsers = () => ({
+  type: ACTIONS.REQUEST_USERS
+})
+
+export const receiveUsers = json => ({
+  type: ACTIONS.RECEIVE_USERS,
+  users: json,
+  receivedAt: Date.now()
+})
+
+export const fetchUsers = () => dispatch => {
+  dispatch(requestUsers())
+
+  return fetch('/api/users')
+    .then(res => res.json(), err => console.log('An error has occurred.', err))
+    .then(json => dispatch(receiveUsers(json)))
 }
