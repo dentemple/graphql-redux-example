@@ -1,16 +1,16 @@
 export const logAction = store => next => action => {
-  console.log('ACTION', { action })
+  // console.log('ACTION', { action })
   return next(action)
 }
 
 export const logResult = store => next => action => {
   let result = next(action)
-  console.log('RESULT', { result })
+  // console.log('RESULT', { result })
   return result
 }
 
 export const logStore = store => next => action => {
-  console.log('STORE', { getState: store.getState() })
+  // console.log('STORE', { getState: store.getState() })
   return next(action)
 }
 
