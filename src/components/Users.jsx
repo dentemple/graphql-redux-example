@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import { connect } from 'react-redux'
 
-import { fetchUsers } from '../state/actions'
+import { fetchUsers, clearUsers } from '../state/actions'
 
 class Users extends Component {
   state = {
@@ -13,7 +13,6 @@ class Users extends Component {
     this.setState({
       didMount: true
     })
-    this.props.handleClick()
   }
 
   renderUsers = users => {
@@ -28,11 +27,12 @@ class Users extends Component {
 
   render() {
     const { didMount } = this.state
-    const { handleClick, lastUpdated, users } = this.props
+    const { handleClick, handleClear, lastUpdated, users } = this.props
 
     return (
       <div>
-        <button onClick={handleClick}>Refresh Users</button>
+        <button onClick={handleClick}>Get Users</button>
+        <button onClick={handleClear}>Clear Users</button>
         {lastUpdated ? <p>Last Updated: {lastUpdated}</p> : <div />}
         <ul>{didMount && users ? this.renderUsers(users) : <div />}</ul>
       </div>
@@ -51,6 +51,9 @@ const mapDispatch = dispatch => {
   return {
     handleClick: () => {
       dispatch(fetchUsers())
+    },
+    handleClear: () => {
+      dispatch(clearUsers())
     }
   }
 }

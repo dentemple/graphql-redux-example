@@ -4,6 +4,10 @@ export const testDispatch = () => ({
   type: ACTIONS.TEST_DISPATCH
 })
 
+export const clearUsers = () => ({
+  type: ACTIONS.CLEAR_USERS
+})
+
 export const requestUsers = () => ({
   type: ACTIONS.REQUEST_USERS
 })

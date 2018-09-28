@@ -22,6 +22,13 @@ function usersData(state = initialState, action) {
         lastUpdated: action.receivedAt
       }
 
+    case ACTIONS.CLEAR_USERS:
+      return {
+        ...state,
+        isFetching: false,
+        users: []
+      }
+
     default:
       return state
   }
