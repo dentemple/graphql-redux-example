@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import { connect } from 'react-redux'
 
-import { fetchUsers, clearUsers } from '../state/actions'
+import { fetchUsers, clearUsers } from '../state/actions/users'
 
 class Users extends Component {
   state = {

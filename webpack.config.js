@@ -8,7 +8,7 @@ module.exports = {
     publicPath: '/dist/',
     filename: 'bundle.js'
   },
-  resolve: { extensions: ['*', '.js', '.jsx'] },
+  resolve: { extensions: ['*', '.js', '.jsx', '.mjs'] },
   module: {
     rules: [
       {
@@ -23,6 +23,11 @@ module.exports = {
       {
         test: /\.(png|svg|jpg|gif)$/,
         use: ['file-loader']
+      },
+      {
+        test: /\.mjs$/,
+        include: /node_modules/,
+        type: 'javascript/auto'
       }
     ]
   },

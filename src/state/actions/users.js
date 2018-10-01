@@ -1,8 +1,4 @@
-import { ACTIONS } from './types'
-
-export const testDispatch = () => ({
-  type: ACTIONS.TEST_DISPATCH
-})
+import { ACTIONS } from '../types'
 
 export const clearUsers = () => ({
   type: ACTIONS.CLEAR_USERS

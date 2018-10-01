@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import query from '../utils/query'
 
 class MessagesFetch extends Component {
   state = {
@@ -17,6 +18,7 @@ class MessagesFetch extends Component {
   }
 
   handleFetch = () => {
+    const url = '/api/graphql'
     const config = {
       method: 'POST',
       headers: {
@@ -29,7 +31,9 @@ class MessagesFetch extends Component {
     }
 
     this.setState({ isFetching: true }, () => {
-      fetch('/api/graphql', config)
+      const loadedQuery = query(url)
+
+      query(url, config)
         .then(res => res.json())
         .then(data => {
           this.setState({ messages: data.data.messages, isFetching: false })
