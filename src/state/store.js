@@ -1,6 +1,7 @@
 import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
-import { createLogger } from 'redux-logger'
+// import { createLogger } from 'redux-logger'
+import { configureWaspMiddleware } from '../utils/redux-wasp'
 
 import reducers from './reducers'
 
@@ -8,8 +9,8 @@ function configureStore(preloadedState) {
   const store = createStore(
     reducers,
     preloadedState,
-    applyMiddleware(thunk, createLogger())
-    // applyMiddleware(thunk)
+    // applyMiddleware(thunk, createLogger())
+    applyMiddleware(thunk, configureWaspMiddleware({ test: 42 }))
   )
 
   if (process.env.NODE_ENV !== 'production') {

@@ -1,5 +1,5 @@
 import { ACTIONS } from '../types'
-import query from '../../utils/query'
+import { query } from '../../utils/redux-wasp'
 
 export const clearMessages = () => ({
   type: ACTIONS.CLEAR_MESSAGES
@@ -18,16 +18,7 @@ export const receiveMessages = json => ({
 
 export const queryMessages = queryString => dispatch => {
   dispatch(requestMessages(queryString))
-  return (
-    query('/api/graphql', queryString)
-      .then(
-        res => res.json(),
-        err => console.log('An error has occurred.', err)
-      )
-      // .then(json => {
-      //   console.log({ result: json.data.messages })
-      //   return json
-      // })
-      .then(json => dispatch(receiveMessages(json.data.messages)))
-  )
+  return query('/api/graphql', queryString)
+    .then(res => res.json(), err => console.log('An error has occurred.', err))
+    .then(json => dispatch(receiveMessages(json.data.messages)))
 }

@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom'
 
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
-import ApolloClient from 'apollo-boost'
 import { ApolloProvider } from 'react-apollo'
+import ApolloClient from 'apollo-boost'
 
 import configureStore from './state/store'
 
@@ -12,7 +12,23 @@ import '@babel/polyfill'
 import 'whatwg-fetch'
 
 const client = new ApolloClient({
-  uri: '/api/graphql'
+  uri: '/api/graphql',
+  request: operation => {
+    console.log('"Operation" to be performed:', operation)
+  },
+  clientState: {
+    defaults: {
+      isConnected: true
+    },
+    resolvers: {
+      Mutation: {
+        updateNetworkStatus: (_, { isConnected }, { cache }) => {
+          cache.writeData({ data: { isConnected } })
+          return null
+        }
+      }
+    }
+  }
 })
 
 const store = configureStore()

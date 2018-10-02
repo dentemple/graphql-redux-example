@@ -6,6 +6,7 @@ import Home from './components/Home'
 import Users from './components/Users'
 import MessagesFetch from './components/MessagesFetch'
 import MessagesRedux from './components/MessagesRedux'
+import MessagesApollo from './components/MessagesApollo'
 import RenderStore from './utils/RenderStore'
 
 class App extends Component {
@@ -19,16 +20,19 @@ class App extends Component {
           <span> | </span>
           <Link to="/users">Users</Link>
           <span> | </span>
-          <Link to="/messages/redux">Messages Redux</Link>
+          <Link to="/fetch">Messages w/ Fetch</Link>
           <span> | </span>
-          <Link to="/messages/fetch">Messages Fetch</Link>
+          <Link to="/redux">Messages w/ Redux</Link>
+          <span> | </span>
+          <Link to="/apollo"> Messages w/ Apollo </Link>
         </nav>
         <br />
         <main>
           <Switch>
             <Route exact path="/users" component={Users} />
-            <Route exact path="/messages/redux" component={MessagesRedux} />
-            <Route exact path="/messages/fetch" component={MessagesFetch} />
+            <Route exact path="/redux" component={MessagesRedux} />
+            <Route exact path="/fetch" component={MessagesFetch} />
+            <Route exact path="/apollo" component={MessagesApollo} />
             <Route path="/" component={Home} />
           </Switch>
         </main>
