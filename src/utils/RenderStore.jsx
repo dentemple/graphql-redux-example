@@ -26,7 +26,8 @@ class RenderStore extends Component {
       padding: 20,
       backgroundColor: '#f3f3f3',
       border: '0.5px solid #777',
-      borderRadius: 10
+      borderRadius: 10,
+      maxWidth: '40vw'
     }
     const buttonStyle = {
       fontFamily: 'monospace'
@@ -36,6 +37,8 @@ class RenderStore extends Component {
 
     return (
       <pre style={preStyle}>
+        <h2 style={{ textAlign: 'center' }}>My Redux Store (live)</h2>
+
         {JSON.stringify(store, null, 2)}
         <p>
           <button style={buttonStyle} onClick={() => this.handleClick()}>

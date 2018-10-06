@@ -17,8 +17,12 @@ export const receiveMessages = json => ({
 })
 
 export const queryMessages = queryString => dispatch => {
+  const callback = json => {
+    const result = json.data.messages
+    console.log({ result })
+    return result
+  }
+
   dispatch(requestMessages(queryString))
-  return query('/api/graphql', queryString)
-    .then(res => res.json(), err => console.log('An error has occurred.', err))
-    .then(json => dispatch(receiveMessages(json.data.messages)))
+  return query('/api/graphql', { fields: queryString }, callback)
 }

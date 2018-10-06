@@ -3,18 +3,13 @@ import query from '../utils/query'
 
 class MessagesFetch extends Component {
   state = {
-    didMount: false,
     isFetching: false,
-    messages: []
-  }
-
-  componentDidMount() {
-    this.setState({ didMount: true })
+    messages: [],
+    error: null
   }
 
   handleClear = () => {
     this.setState({ messages: [] })
-    console.clear()
   }
 
   handleFetch = () => {
@@ -29,14 +24,14 @@ class MessagesFetch extends Component {
         query: `{messages {id author description}}`
       })
     }
-
-    this.setState({ isFetching: true }, () => {
-      const loadedQuery = query(url)
-
+    this.setState({ isFetching: true, error: null }, () => {
       query(url, config)
         .then(res => res.json())
-        .then(data => {
-          this.setState({ messages: data.data.messages, isFetching: false })
+        .then(json => {
+          this.setState({ messages: json.data.messages, isFetching: false })
+        })
+        .catch(error => {
+          this.setState({ error, isFetching: false })
         })
     })
   }
@@ -52,12 +47,13 @@ class MessagesFetch extends Component {
   }
 
   render() {
-    const { didMount, messages, isFetching } = this.state
+    const { messages, isFetching, error } = this.state
 
     return (
       <div>
         <button onClick={this.handleFetch}>Get Messages</button>
         <button onClick={this.handleClear}>Clear Messages</button>
+
         <br />
         <p>
           <em>
@@ -67,11 +63,15 @@ class MessagesFetch extends Component {
             </small>
           </em>
         </p>
-        {didMount &&
-          messages.length > 0 &&
-          messages.map((message, i) => (
-            <pre key={i}>{JSON.stringify(message, null, 2)}</pre>
-          ))}
+        {error ? (
+          <pre>
+            <code>{JSON.stringify(error, null, 2)}</code>
+          </pre>
+        ) : (
+          <pre>
+            <code>{JSON.stringify(messages, null, 2)}</code>
+          </pre>
+        )}
       </div>
     )
   }
