@@ -13,19 +13,8 @@ class MessagesFetch extends Component {
   }
 
   handleFetch = () => {
-    const url = '/api/graphql'
-    const config = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json'
-      },
-      body: JSON.stringify({
-        query: `{messages {id author description}}`
-      })
-    }
     this.setState({ isFetching: true, error: null }, () => {
-      query(url, config)
+      query('/api/graphql', '{messages {id author description}}')
         .then(res => res.json())
         .then(json => {
           this.setState({ messages: json.data.messages, isFetching: false })
